@@ -1,0 +1,31 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1705.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeExpenses.Tracking", "HomeExpenses.Tracking\HomeExpenses.Tracking.csproj", "{BA8CF6CD-D5DE-4BF3-8F4C-DC1329693A1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeExpenses.Gateway", "HomeExpenses.Gateway\HomeExpenses.Gateway.csproj", "{0A270FDD-2735-4200-8A45-9E73FED9C2F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA8CF6CD-D5DE-4BF3-8F4C-DC1329693A1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA8CF6CD-D5DE-4BF3-8F4C-DC1329693A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA8CF6CD-D5DE-4BF3-8F4C-DC1329693A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA8CF6CD-D5DE-4BF3-8F4C-DC1329693A1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A270FDD-2735-4200-8A45-9E73FED9C2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A270FDD-2735-4200-8A45-9E73FED9C2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A270FDD-2735-4200-8A45-9E73FED9C2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A270FDD-2735-4200-8A45-9E73FED9C2F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD90DDE9-4112-4DCB-BFEC-1789C7D1304E}
+	EndGlobalSection
+EndGlobal
