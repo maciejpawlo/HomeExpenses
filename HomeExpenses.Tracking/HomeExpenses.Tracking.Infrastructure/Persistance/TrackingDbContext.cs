@@ -11,6 +11,14 @@ namespace HomeExpenses.Tracking.Infrastructure.Persistance
 {
     public class TrackingDbContext : DbContext
     {
+        public TrackingDbContext()
+        {
+        }
+
+        public TrackingDbContext(DbContextOptions options) : base(options)
+        {
+        }
+
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<User> Users { get; set; }
 

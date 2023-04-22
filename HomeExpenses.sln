@@ -12,7 +12,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeExpenses.Tracking.Appli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeExpenses.Tracking.Domain", "HomeExpenses.Tracking\HomeExpenses.Tracking.Domain\HomeExpenses.Tracking.Domain.csproj", "{40DC3D58-C58C-45C9-AC83-8C418F370DEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeExpenses.Tracking.Infrastructure", "HomeExpenses.Tracking\HomeExpenses.Tracking.Persistance\HomeExpenses.Tracking.Infrastructure.csproj", "{C52F3F8E-EFE5-4040-B6DB-A4788FAE1878}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeExpenses.Tracking.Infrastructure", "HomeExpenses.Tracking\HomeExpenses.Tracking.Infrastructure\HomeExpenses.Tracking.Infrastructure.csproj", "{C52F3F8E-EFE5-4040-B6DB-A4788FAE1878}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeExpenses.Domain.Core", "HomeExpenses.Domain.Core\HomeExpenses.Domain.Core.csproj", "{184BFB59-E871-4691-B5E0-CA43017EDB5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +42,10 @@ Global
 		{C52F3F8E-EFE5-4040-B6DB-A4788FAE1878}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C52F3F8E-EFE5-4040-B6DB-A4788FAE1878}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C52F3F8E-EFE5-4040-B6DB-A4788FAE1878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{184BFB59-E871-4691-B5E0-CA43017EDB5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{184BFB59-E871-4691-B5E0-CA43017EDB5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{184BFB59-E871-4691-B5E0-CA43017EDB5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{184BFB59-E871-4691-B5E0-CA43017EDB5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
