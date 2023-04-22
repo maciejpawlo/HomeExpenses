@@ -14,7 +14,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HomeExpenses.Tracking.Persistance\HomeExpenses.Tracking.Infrastructure.csproj" />
+    <ProjectReference Include="..\HomeExpenses.Tracking.Infrastructure\HomeExpenses.Tracking.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
