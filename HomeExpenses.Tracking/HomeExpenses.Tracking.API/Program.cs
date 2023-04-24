@@ -1,5 +1,5 @@
-﻿using HomeExpenses.Tracking.Infrastructure.Persistance;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using HomeExpenses.Tracking.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,9 +9,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<TrackingDbContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-    );
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 var app = builder.Build();
 
