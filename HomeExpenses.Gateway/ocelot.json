@@ -1,7 +1,7 @@
 ﻿{
   "Routes": [
     {
-      "DownstreamPathTemplate": "/weatherForecast",
+      "DownstreamPathTemplate": "/expense",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -9,11 +9,11 @@
           "Port": 7084
         }
       ],
-      "UpstreamPathTemplate": "/weather",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamPathTemplate": "/expense",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/weatherForecast/{everything}",
+      "DownstreamPathTemplate": "/expense/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -21,8 +21,8 @@
           "Port": 7084
         }
       ],
-      "UpstreamPathTemplate": "/weather/{everything}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamPathTemplate": "/expense/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE"]
     }
   ],
   "GlobalConfiguration": {}

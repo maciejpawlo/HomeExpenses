@@ -6,4 +6,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Handlers\ExpenseHandlers\Queries\" />
+    <Folder Include="Handlers\UserHandlers\Commands\" />
+    <Folder Include="Handlers\UserHandlers\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HomeExpenses.Tracking.Domain\HomeExpenses.Tracking.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

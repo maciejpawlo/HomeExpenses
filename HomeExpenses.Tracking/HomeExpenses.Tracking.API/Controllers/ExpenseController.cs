@@ -1,22 +1,26 @@
-﻿using HomeExpenses.Tracking.Service;
+﻿using HomeExpenses.Tracking.Application.Handlers.ExpenseHandlers.CreateExpense;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomeExpenses.Tracking.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ExpenseController : ControllerBase
     {
-        public ExpenseController()
+        private ISender mediator = null!;
+        protected ISender Mediator => mediator ??= HttpContext.RequestServices.GetRequiredService<ISender>();
+
+        public ExpenseController(ISender mediator)
         {
-            
+            this.mediator = mediator;
         }
 
         [HttpPost()]
-        public IActionResult Add()
+        public async Task<IActionResult> Create(CreateExpenseCommand command)
         {
-            return Ok();
+            return Ok(await Mediator.Send(command));
         }
 
         [HttpPut("{id:guid}")]
