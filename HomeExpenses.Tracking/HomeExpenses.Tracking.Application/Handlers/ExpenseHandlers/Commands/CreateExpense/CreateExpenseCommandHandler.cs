@@ -27,6 +27,7 @@ namespace HomeExpenses.Tracking.Application.Handlers.ExpenseHandlers.Commands.Cr
                 CreatedOn = DateTime.UtcNow,
                 Type = request.Type,
                 UserId = request.UserId,
+                CreatedBy = "test"
             };
 
             await expenseRepository.AddAsync(expense);

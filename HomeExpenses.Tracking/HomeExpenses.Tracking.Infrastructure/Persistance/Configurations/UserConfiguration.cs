@@ -34,6 +34,12 @@ namespace HomeExpenses.Tracking.Infrastructure.Persistance.Configurations
 
             builder.Property(x => x.UpdatedOn)
                 .IsRequired(false);
+
+            builder.Property(x => x.CreatedBy)
+                .IsRequired();
+
+            builder.Property(x => x.UpdatedBy)
+                .IsRequired(false);
         }
     }
 }
