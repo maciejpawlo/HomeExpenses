@@ -24,9 +24,9 @@ namespace HomeExpenses.Tracking.Infrastructure.Repositories
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Expense>> GetAllAsync()
+        public async Task<IQueryable<Expense>> GetAllAsync()
         {
-            return await dbContext.Expenses.ToListAsync(); //TODO: return iqueryable, add paging
+            return dbContext.Expenses.AsQueryable();
         }
 
         public async Task<Expense?> GetByIdAsync(Guid id)

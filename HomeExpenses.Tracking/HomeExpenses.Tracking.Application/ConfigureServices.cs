@@ -11,6 +11,7 @@ namespace HomeExpenses.Tracking.Application
             {
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
             });
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }
     }

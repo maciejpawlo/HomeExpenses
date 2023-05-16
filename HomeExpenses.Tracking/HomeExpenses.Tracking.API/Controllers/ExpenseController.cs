@@ -1,4 +1,6 @@
-﻿using HomeExpenses.Tracking.Application.Handlers.ExpenseHandlers.CreateExpense;
+﻿using HomeExpenses.Tracking.Application.Handlers.ExpenseHandlers.Commands.UpdateExpense;
+using HomeExpenses.Tracking.Application.Handlers.ExpenseHandlers.CreateExpense;
+using HomeExpenses.Tracking.Application.Handlers.ExpenseHandlers.Queries.GetExpenseById;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,9 +26,15 @@ namespace HomeExpenses.Tracking.API.Controllers
         }
 
         [HttpPut("{id:guid}")]
-        public IActionResult Update(Guid id)
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateExpenseCommand command)
         {
-            return Ok();
+            if (id != command.Id)
+            {
+                return BadRequest();
+            }
+
+            await Mediator.Send(command);
+            return NoContent();
         }
 
         [HttpGet()]
@@ -36,9 +44,14 @@ namespace HomeExpenses.Tracking.API.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        public IActionResult GetById(Guid id)
+        public async Task<IActionResult> GetById(Guid id, [FromBody] GetExpenseByIdCommand command)
         {
-            return Ok();
+            if (id != command.Id)
+            {
+                return BadRequest();
+            }
+
+            return Ok(await Mediator.Send(command));
         }
     }
 }
