@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using HomeExpenses.Tracking.Infrastructure;
 using HomeExpenses.Tracking.Application;
-
+using HomeExpenses.Tracking.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +27,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapControllers();
 
