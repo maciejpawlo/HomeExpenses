@@ -24,7 +24,7 @@ namespace HomeExpenses.Tracking.Infrastructure.Repositories
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<IQueryable<Expense>> GetAllAsync()
+        public IQueryable<Expense> GetAll()
         {
             return dbContext.Expenses.AsQueryable();
         }

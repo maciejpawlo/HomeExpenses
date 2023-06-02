@@ -1,5 +1,6 @@
 ﻿using HomeExpenses.Tracking.Application.Handlers.ExpenseHandlers.Commands.UpdateExpense;
 using HomeExpenses.Tracking.Application.Handlers.ExpenseHandlers.CreateExpense;
+using HomeExpenses.Tracking.Application.Handlers.ExpenseHandlers.Queries.GetAllExpenses;
 using HomeExpenses.Tracking.Application.Handlers.ExpenseHandlers.Queries.GetExpenseById;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -38,9 +39,9 @@ namespace HomeExpenses.Tracking.API.Controllers
         }
 
         [HttpGet()]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll([FromBody] GetAllExpensesCommand command)
         {
-            return Ok();
+            return Ok(await Mediator.Send(command));
         }
 
         [HttpGet("{id:guid}")]

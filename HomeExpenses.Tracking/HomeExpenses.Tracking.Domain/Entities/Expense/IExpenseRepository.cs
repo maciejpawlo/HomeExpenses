@@ -8,7 +8,7 @@ namespace HomeExpenses.Tracking.Domain.Entities.Expense
 {
     public interface IExpenseRepository
     {
-        Task<IQueryable<Expense>> GetAllAsync();
+        IQueryable<Expense> GetAll();
         Task<Expense?> GetByIdAsync(Guid id);
         Task AddAsync(Expense expense);
         Task UpdateAsync(Expense expense);
