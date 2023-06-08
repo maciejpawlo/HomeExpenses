@@ -10,8 +10,9 @@ namespace HomeExpenses.Tracking.Application.Handlers.ExpenseHandlers.Queries.Get
 		public ExpenseType? Type { get; set; }
 		public decimal? MaxAmount { get; set; }
 		public decimal? MinAmount { get; set; }
-		public DateTime? CreatedOn { get; set; }
-		public int PageNumber { get; set; }
+		public DateTime? MinDate { get; set; }
+        public DateTime? MaxDate { get; set; }
+        public int PageNumber { get; set; }
 		public int PageSize { get; set; }
 	}
 	

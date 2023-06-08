@@ -11,6 +11,7 @@
     <Folder Include="Handlers\UserHandlers\Commands\" />
     <Folder Include="Handlers\UserHandlers\Queries\" />
     <Folder Include="Shared\Exceptions\" />
+    <Folder Include="Shared\Extensions\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,4 +26,7 @@
     <ProjectReference Include="..\HomeExpenses.Tracking.Domain\HomeExpenses.Tracking.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Shared\Extensions\" />
+  </ItemGroup>
 </Project>
