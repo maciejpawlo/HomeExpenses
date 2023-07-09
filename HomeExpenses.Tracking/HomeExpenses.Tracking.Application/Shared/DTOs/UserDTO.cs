@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeExpenses.Domain.Core.Entities
+namespace HomeExpenses.Tracking.Application.Shared.DTOs
 {
-    public abstract class Entity : ITrackableEntity
+    public class UserDTO
     {
-        public Guid Id { get; set; }
+        public int GuidId { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public string CreatedBy { get; set; }

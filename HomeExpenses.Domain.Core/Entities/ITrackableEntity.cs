@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace HomeExpenses.Domain.Core.Entities
 {
-    public abstract class Entity : ITrackableEntity
+    internal interface ITrackableEntity
     {
-        public Guid Id { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public string CreatedBy { get; set; }

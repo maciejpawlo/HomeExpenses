@@ -1,4 +1,5 @@
-﻿using HomeExpenses.Tracking.Domain.Entities.Expense;
+﻿using HomeExpenses.Tracking.Application.Shared.Exceptions;
+using HomeExpenses.Tracking.Domain.Entities.Expense;
 using HomeExpenses.Tracking.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -24,9 +25,9 @@ namespace HomeExpenses.Tracking.Infrastructure.Repositories
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Expense>> GetAllAsync()
+        public IQueryable<Expense> GetAll()
         {
-            return await dbContext.Expenses.ToListAsync(); //TODO: return iqueryable, add paging
+            return dbContext.Expenses.AsQueryable();
         }
 
         public async Task<Expense?> GetByIdAsync(Guid id)
@@ -37,7 +38,14 @@ namespace HomeExpenses.Tracking.Infrastructure.Repositories
         public async Task UpdateAsync(Expense expense)
         {
             dbContext.Expenses.Update(expense);
-            await dbContext.SaveChangesAsync();
+            try
+            {
+                await dbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw new NotFoundException($"Could not update expense with id: {expense.Id}, because it does not exist");
+            }
         }
     }
 }
