@@ -45,14 +45,9 @@ namespace HomeExpenses.Tracking.API.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        public async Task<IActionResult> GetById(Guid id, [FromBody] GetExpenseByIdCommand command)
+        public async Task<IActionResult> GetById(Guid id)
         {
-            if (id != command.Id)
-            {
-                return BadRequest();
-            }
-
-            return Ok(await Mediator.Send(command));
+            return Ok(await Mediator.Send(new GetExpenseByIdCommand { Id = id}));
         }
     }
 }

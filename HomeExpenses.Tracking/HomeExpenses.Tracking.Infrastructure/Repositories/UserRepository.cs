@@ -1,10 +1,8 @@
-﻿using HomeExpenses.Tracking.Domain.Entities.User;
+﻿using HomeExpenses.Tracking.Application.Shared.Exceptions;
+using HomeExpenses.Tracking.Domain.Entities.Expense;
+using HomeExpenses.Tracking.Domain.Entities.User;
 using HomeExpenses.Tracking.Infrastructure.Persistance;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomeExpenses.Tracking.Infrastructure.Repositories
 {
@@ -27,7 +25,7 @@ namespace HomeExpenses.Tracking.Infrastructure.Repositories
         {
             var userToDelete = await GetByIdAsync(id);
             if (userToDelete is null)
-                return; //TODO: throw not found exception
+                throw new NotFoundException($"Could not find user with given id: {id}"); 
             dbContext.Users.Remove(userToDelete);
             await dbContext.SaveChangesAsync();
         }
@@ -40,7 +38,14 @@ namespace HomeExpenses.Tracking.Infrastructure.Repositories
         public async Task UpdateAsync(User user)
         {
             dbContext.Users.Update(user);
-            await dbContext.SaveChangesAsync();
+            try
+            {
+                await dbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw new NotFoundException($"Could not update user with id: {user.Id}, because it does not exist");
+            }
         }
     }
 }

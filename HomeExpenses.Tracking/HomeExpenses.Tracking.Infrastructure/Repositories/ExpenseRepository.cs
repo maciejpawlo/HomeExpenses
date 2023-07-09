@@ -1,4 +1,5 @@
-﻿using HomeExpenses.Tracking.Domain.Entities.Expense;
+﻿using HomeExpenses.Tracking.Application.Shared.Exceptions;
+using HomeExpenses.Tracking.Domain.Entities.Expense;
 using HomeExpenses.Tracking.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -37,7 +38,14 @@ namespace HomeExpenses.Tracking.Infrastructure.Repositories
         public async Task UpdateAsync(Expense expense)
         {
             dbContext.Expenses.Update(expense);
-            await dbContext.SaveChangesAsync();
+            try
+            {
+                await dbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw new NotFoundException($"Could not update expense with id: {expense.Id}, because it does not exist");
+            }
         }
     }
 }

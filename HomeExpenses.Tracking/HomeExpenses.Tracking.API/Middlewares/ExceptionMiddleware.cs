@@ -1,44 +1,63 @@
 ﻿using System.Net;
 using FluentValidation;
+using HomeExpenses.Tracking.Application.Shared.Exceptions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace HomeExpenses.Tracking.API.Middlewares
 {
-    public class ExceptionMiddleware
+    public class ExceptionMiddleware : IMiddleware
     {
-        private readonly RequestDelegate next;
+        private readonly ProblemDetailsFactory problemDetailsFactory;
 
-        public ExceptionMiddleware(RequestDelegate next) 
+        public ExceptionMiddleware(ProblemDetailsFactory problemDetailsFactory) 
         {
-            this.next = next;
+            this.problemDetailsFactory = problemDetailsFactory;
         }
 
-        public async Task InvokeAsync(HttpContext httpContext)
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             try
             {
-                await next(httpContext);
+                await next(context);
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(httpContext, ex);
+                await HandleExceptionAsync(context, ex);
             }
         }
 
         private async Task HandleExceptionAsync(HttpContext httpContext, Exception ex)
         {
-            ProblemDetails problemDetails = new();
-            ValidationProblemDetails validationProblemDetails = new();
-
             httpContext.Response.ContentType = "application/json";
             switch (ex)
             {
-                case ValidationException:
-                    httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    break;
+                case NotFoundException notFoundException:
+                    {
+                        var problemDetails = problemDetailsFactory.CreateProblemDetails(httpContext,
+                            statusCode: (int)HttpStatusCode.NotFound, detail: notFoundException.Message);
+                        await httpContext.Response.WriteAsJsonAsync(problemDetails);
+                        break;
+                    }
+                case ValidationException validationException:
+                    {
+                        var modelStateDictionary = new ModelStateDictionary();
+                        foreach (var error in validationException.Errors)
+                        {
+                            modelStateDictionary.AddModelError(error.PropertyName, error.ErrorMessage);
+                        }
+                        var problemDetails = problemDetailsFactory.CreateValidationProblemDetails(httpContext, modelStateDictionary);
+                        await httpContext.Response.WriteAsJsonAsync(problemDetails);
+                        break;
+                    }
                 default:
-                    httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError; 
-                    break;
+                    {
+                        var problemDetails = problemDetailsFactory.CreateProblemDetails(httpContext);
+                        await httpContext.Response.WriteAsJsonAsync(problemDetails);
+                        break;
+                    }
             }
         }
     }

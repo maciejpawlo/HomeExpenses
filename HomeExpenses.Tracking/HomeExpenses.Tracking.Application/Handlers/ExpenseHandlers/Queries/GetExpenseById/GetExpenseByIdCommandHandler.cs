@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HomeExpenses.Tracking.Application.Shared.DTOs;
+using HomeExpenses.Tracking.Application.Shared.Exceptions;
 using HomeExpenses.Tracking.Domain.Entities.Expense;
 using MediatR;
 using System;
@@ -25,7 +26,8 @@ namespace HomeExpenses.Tracking.Application.Handlers.ExpenseHandlers.Queries.Get
         public async Task<ExpenseDTO> Handle(GetExpenseByIdCommand request, CancellationToken cancellationToken)
         {
             var expense = await expenseRepository.GetByIdAsync(request.Id);
-
+            if (expense is null)
+                throw new NotFoundException($"Could not find expense with given id: {request.Id}");
             return mapper.Map<ExpenseDTO>(expense);
         }
     }
